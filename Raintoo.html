@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rain Effect</title>
+	<style type="text/css">
+		body {
+	background-color: #0D343A;
+	overflow: hidden;
+}
+
+.rain {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+}
+
+.drop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1px;
+	height: 89px;
+	background: linear-gradient(to bottom, #0d343a, #ffffff99);
+	animation: fall .3s linear infinite;
+}
+
+@keyframes fall {
+	to {
+		transform: translateY(100vh);
+	}
+}
+	</style>
+</head>
+<body>
+	<div class="rain"></div>
+	<script type="text/javascript">
+		let nbDrop = 858;
+
+function randRange(minNum, maxNum) {
+	return Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+}
+
+function createRain() {
+	for (let i = 1; i < nbDrop; i++) {
+		let dropLeft = randRange(0, 1600);
+		let dropTop = randRange(-1000, 1400);
+		document.querySelector('.rain').insertAdjacentHTML('beforeend', `<div class="drop" id="drop${i}"></div>`);
+		document.getElementById(`drop${i}`).style.left = `${dropLeft}px`;
+		document.getElementById(`drop${i}`).style.top = `${dropTop}px`;
+	}
+}
+
+createRain();
+	</script>
+</body>
+</html>
